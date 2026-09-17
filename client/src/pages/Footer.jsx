@@ -36,7 +36,7 @@ function Footer({ isPro, setIsPro, user, setUser }) {
     e.preventDefault();
     if (!emailInput) return;
 
-    // Fixed: Agar tera email match ho, toh automatically isAdmin true kar diya taaki Admin Panel button dikh jaye!
+    // Yahan fix kiya hai: Tera email match hote hi isAdmin true ho jayega!
     const isAdminUser = emailInput.trim().toLowerCase() === "ravaleshubham9@gmail.com";
 
     const loggedUser = { 
@@ -116,7 +116,7 @@ function Footer({ isPro, setIsPro, user, setUser }) {
             <p style={{ cursor: "pointer", color: "#818cf8" }} onClick={() => setShowPayModal(true)}>👑 Premium Question Bank</p>
           </div>
 
-          {/* ACCOUNT & ADMIN COL */}
+          {/* ACCOUNT & ADMIN COL (FIXED & CLEANED) */}
           <div>
             <h4 style={{ color: "#fff", margin: "0 0 12px" }}>Account & Admin</h4>
             {user ? (
@@ -139,7 +139,7 @@ function Footer({ isPro, setIsPro, user, setUser }) {
               </p>
             )}
 
-            {/* ADMIN PANEL LINK: Ab yeh teri email daalte hi turant dikh jayega */}
+            {/* 🔴 ADMIN PANEL LINK: ONLY VISIBLE IF USER IS LOGGED IN AND IS AN ADMIN */}
             {user && user.isAdmin && (
               <div style={{ marginTop: "15px" }}>
                 <button 
@@ -166,6 +166,7 @@ function Footer({ isPro, setIsPro, user, setUser }) {
             <span style={{ background: "#e0e7ff", color: "#4f46e5", padding: "4px 12px", borderRadius: "20px", fontSize: "12px", fontWeight: "bold" }}>UPGRADE TO PRO</span>
             <h2 style={{ margin: "10px 0 2px", fontSize: "26px", color: "#0f172a" }}>₹499 <span style={{ fontSize: "14px", color: "#64748b" }}>/ lifetime</span></h2>
 
+            {/* STATUS NOTIFICATION FOR USER */}
             {userPaymentStatus ? (
               <div style={{ margin: "15px 0", padding: "12px", borderRadius: "8px", background: userPaymentStatus.status === "approved" ? "#dcfce7" : userPaymentStatus.status === "rejected" ? "#fee2e2" : "#fef9c3", border: "1px solid #cbd5e1" }}>
                 {userPaymentStatus.status === "pending" && <p style={{ margin: 0, color: "#854d0e", fontWeight: "bold", fontSize: "13px" }}>⏳ Verification Pending for UTR: {userPaymentStatus.utr}<br/><span style={{ fontWeight: "normal", fontSize: "11px" }}>Admin is checking your payment.</span></p>}
@@ -174,6 +175,7 @@ function Footer({ isPro, setIsPro, user, setUser }) {
               </div>
             ) : null}
 
+            {/* QR CODE DISPLAY */}
             <div style={{ background: "#f8fafc", padding: "12px", borderRadius: "12px", border: "1px solid #e2e8f0", display: "inline-block", marginBottom: "12px" }}>
               <img 
                 src="/qr.png" 
@@ -184,6 +186,7 @@ function Footer({ isPro, setIsPro, user, setUser }) {
               <p style={{ margin: "6px 0 0", fontSize: "12px", fontWeight: "bold", color: "#334155" }}>UPI ID: 9974058027@ibl</p>
             </div>
 
+            {/* UTR VERIFICATION FORM */}
             <form onSubmit={handleUtrSubmit} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               <input 
                 type="text" 
@@ -205,7 +208,7 @@ function Footer({ isPro, setIsPro, user, setUser }) {
         </div>
       )}
 
-      {/* ADMIN PANEL MODAL */}
+      {/* ADMIN PANEL MODAL (FOR YOU TO APPROVE/REJECT) */}
       {showAdminModal && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.8)", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1100 }}>
           <div style={{ background: "#fff", padding: "24px", borderRadius: "16px", maxWidth: "600px", width: "90%", color: "#1e293b", maxHeight: "80vh", overflowY: "auto" }}>
