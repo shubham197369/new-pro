@@ -41,4 +41,4 @@ To run this project locally on your machine, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone; https://github.com/shubham197369/new-pro.git)
+   git clone; https://github.com/shubham197369/new-pro.git
